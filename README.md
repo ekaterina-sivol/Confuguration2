@@ -169,9 +169,12 @@
 ### Тестирование
 Результат работы программы с линейной структурой графа зависимости
 <img width="904" height="597" alt="image" src="https://github.com/user-attachments/assets/d709cb0e-787f-420f-a348-b84b03ba0979" />
+
 Результат работы программы со сложной структурой графа зависимости
 <img width="920" height="730" alt="image" src="https://github.com/user-attachments/assets/bb49f261-2745-4a83-83f7-f0c94b7b2fa8" />
+
 Результат работы программы с алмазной структурой графа зависимости
 <img width="917" height="579" alt="image" src="https://github.com/user-attachments/assets/e8259c3e-1b90-4238-abe0-5e0ff046ac3f" />
+
 Результат работы программы с циклической структурой графа зависимости
 <img width="916" height="574" alt="image" src="https://github.com/user-attachments/assets/7a6d7df5-4365-445a-9d78-56552b8ccfa0" />
