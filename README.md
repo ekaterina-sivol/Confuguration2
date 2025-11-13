@@ -43,20 +43,28 @@
 ### Тестирование
 Результат работы программы с корректным файлом и параметрами
 <img width="751" height="298" alt="image" src="https://github.com/user-attachments/assets/e6ed6fde-23ed-4a85-8fa7-bc4e6f24b8b0" />
+
 Результат работы программы с ошибкой в имени пакета (отсутствие имени пакета)
 <img width="1446" height="68" alt="image" src="https://github.com/user-attachments/assets/ca9a6dc9-9361-4cdd-8143-b9e533aec544" />
+
 Результат работы программы с ошибкой в URL (отсутствие URL-адреса)
 <img width="1436" height="49" alt="image" src="https://github.com/user-attachments/assets/039a1263-0a56-49f6-b361-f4b275ef973b" />
+
 Результат работы программы с ошибкой в режиме работы с тестовым репозиторием (недопустимый режим работы)
 <img width="1440" height="73" alt="image" src="https://github.com/user-attachments/assets/ff15daee-08f0-4c2d-8c9d-ad3ea1d5831e" />
+
 Результат работы программы с ошибкой в версии пакета (некорректный формат версии)
 <img width="1272" height="52" alt="image" src="https://github.com/user-attachments/assets/2f121925-bd2a-4611-a79a-1e882444b079" />
+
 Результат работы программы с ошибкой в имени сгенерированного файла с изображением графа
 <img width="1272" height="45" alt="image" src="https://github.com/user-attachments/assets/ee53d25f-6909-42ff-8e7e-9db9f932a68d" />
+
 Результат работы программы с ошибкой в режиме вывода зависимостей в формате ASCII-дерева (недопустимое значение)
 <img width="1451" height="67" alt="image" src="https://github.com/user-attachments/assets/4a6ebfeb-8db9-4150-a65d-ccefa7cf87af" />
+
 Результат работы программы с ошибкой в подстроке для фильтрации пакетов
 <img width="1025" height="47" alt="image" src="https://github.com/user-attachments/assets/863111f2-dff4-4fdb-8cf3-bfa75546fe84" />
+
 ### Этап 2. Сбор данных
 ### Общее описание.
 #### Цель: реализовано основная логика получения данных о зависимостях для их
