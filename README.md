@@ -191,6 +191,60 @@
 работы с тестовым репозиторием.
 3. Результат выполнения этапа сохранили в репозиторий стандартно
 оформленным коммитом.
+### Описание всех функций и настроек
+#### Функции:
+* parse_config(config_path) - парсит конфигурационный INI файл и возвращает параметры с валидацией.Параметры: config_path (str) - путь к INI файлу конфигурации.Возвращает: dict - словарь с параметрами конфигурации.
+* get_dependencies_from_pom(package_name, version, repository_url) - скачивает и парсит POM-файл из Maven-репозитория.Параметры: package_name (str) - имя пакета, version (str) - версия пакета, repository_url (str) - URL репозитория Maven.Возвращает: list - список зависимостей пакета.
+* _parse_package_name(package_name) - парсит имя пакета на groupId и artifactId.Параметры: package_name (str) - имя пакета в формате "groupId:artifactId".Возвращает: tuple - (group_id, artifact_id).
+* _build_pom_url(group_id, artifact_id, version, repository_url) - строит URL для POM-файла по Maven-конвенции.Параметры: group_id (str), artifact_id (str), version (str), repository_url (str).Возвращает: str - URL POM-файла.
+* _parse_dependencies_from_pom(pom_content) - парсит зависимости из содержимого POM-файла.
+Параметры: pom_content (str) - содержимое POM-файла.Возвращает: list - список зависимостей.
+*read_dependencies_from_test_file(package_name, test_repo_path) - читает зависимости пакета из тестового файла.Параметры: package_name (str) - имя пакета, test_repo_path (str) - путь к тестовому файлу.Возвращает: list - список зависимостей.
+* get_package_dependencies(package_name, version, repository_url, is_test_mode) - универсальная функция для получения зависимостей пакета.
+Параметры: package_name (str) - имя пакета, version (str) - версия пакета, repository_url (str) - URL репозитория или путь к файлу, is_test_mode (bool) - флаг тестового режима.
+Возвращает: list - список зависимостей.
+* _should_filter_package(package_name, package_filter) - проверяет, нужно ли фильтровать пакет.
+Параметры: package_name (str) - имя пакета, package_filter (str) - фильтр.Возвращает: bool - True если пакет должен быть отфильтрован.
+* build_dependency_graph(package_name, version, repository_url, is_test_mode, package_filter="", depth=0, max_depth=10) - рекурсивно строит граф зависимостей для пакета с использованием DFS. Параметры: package_name (str) - имя пакета, version (str) - версия пакета, repository_url (str) - URL репозитория, is_test_mode (bool) - флаг тестового режима, package_filter (str) - фильтр пакетов, depth (int) - текущая глубина рекурсии, max_depth (int) - максимальная глубина рекурсии.
+* _process_cycles() - обрабатывает циклические зависимости для специального отображения.
+* display_ascii_tree(start_package, prefix="", is_last=True) - отображает граф в виде ASCII-дерева.Параметры: start_package (str) - корневой пакет, prefix (str) - префикс для отступов, is_last (bool) - является ли последним элементом.
+* display_dependency_graph(ascii_mode=False) - выводит построенный граф зависимостей в консоль.
+Параметры: ascii_mode (bool) - режим вывода в формате ASCII-дерева.
+* create_test_files() - создает тестовые файлы для демонстрации работы программы.
+* get_all_packages_from_test_file(test_repo_path) - получает список всех пакетов из тестового файла.Параметры: test_repo_path (str) - путь к тестовому файлу.Возвращает: list - список пакетов.
+* build_complete_dependency_graph(repository_url, is_test_mode) - строит полный граф всех пакетов в репозитории.Параметры: repository_url (str) - URL репозитория или путь к файлу, is_test_mode (bool) - флаг тестового режима.
+* get_start_package_from_config() - получает стартовый пакет из конфигурации.
+Возвращает: str - имя пакета.
+* interactive_test_mode() - запускает интерактивный режим тестирования.
+* calculate_load_order(start_package) - рассчитывает порядок загрузки зависимостей с использованием топологической сортировки.Параметры: start_package (str) - стартовый пакет для анализа.Возвращает: list - список пакетов в порядке загрузки.
+* display_load_order(start_package) - отображает порядок загрузки зависимостей и сравнивает с ожидаемым порядком Maven.
+Параметры: start_package (str) - пакет для анализа порядка загрузки.
+* _compare_with_maven_order(our_order, start_package) - сравнивает наш порядок загрузки с ожидаемым поведением Maven.
+Параметры: our_order (list) - наш рассчитанный порядок, start_package (str) - стартовый пакет.
+* _simulate_maven_order(start_package) - симулирует порядок загрузки Maven (Depth-First с учетом порядка объявления).Параметры: start_package (str) - стартовый пакет.
+Возвращает: list - порядок загрузки в стиле Maven.
+* demonstrate_on_test_cases() - демонстрирует функциональность порядка загрузки на различных тестовых случаях.
+#### Настройки конфигурационного файла:
+##### Обязательные параметры:
+* name (str) - название анализируемого пакета в формате "groupId:artifactId".
+* version (str) - версия пакета для анализа.
+* repository_url (str) - URL-адрес Maven-репозитория.
+##### Опциональные параметры:
+* test_repository_mode (bool) - режим работы с тестовым репозиторием. По умолчанию: False.
+* test_repository_path (str) - путь к тестовому файлу. По умолчанию: "./test_repo".
+* package_filter (str) - фильтр пакетов для исключения из анализа. По умолчанию: "".
+* ascii_tree_mode (bool) - режим вывода зависимостей в формате ASCII-дерева. По умолчанию: False.
+* output_filename (str) - имя файла для сохранения графа. По умолчанию: "dependency_graph.png".
+* load_order_mode (bool) - режим вывода порядка загрузки зависимостей. По умолчанию: False.
+* demo_mode (bool) - режим демонстрации на тестовых случаях. По умолчанию: False.
+#### Глобальные переменные:
+* graph (dict) - хранит граф зависимостей: пакет → список зависимостей.
+* visited (set) - отслеживает полностью обработанные пакеты.
+* visiting (list) - отслеживает пакеты в текущем пути обхода (для обнаружения циклов).
+* cycles (dict) - хранит информацию об обнаруженных циклических зависимостях.
+* original_dependencies (dict) - сохраняет оригинальные зависимости до обработки циклов.
+### Описание команд для сборки проекта и запуска тестов
+Программа требует только стандартные библиотеки Python: configparser, os, sys, urllib.request, urllib.error, xml.etree.ElementTree, collections. Тестирование проводиться в интерактивном режиме (пользователь указывает путь к файлу описания графа репозитория).
 ### Тестирование
 Результат работы программы с линейной структурой графа зависимости
 <img width="884" height="1080" alt="image" src="https://github.com/user-attachments/assets/6632a7ec-b26b-4101-b26e-f66601dddffb" />
